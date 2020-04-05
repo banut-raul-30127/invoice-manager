@@ -24,13 +24,17 @@
         <h1>Nexttech Application</h1>
     </div>
 
-    <form  th:action="@{/invoicesByText}"  method="get">
-        <input type="text" name="text" required autocomplete="off"/>
-        <input class="btn btn-outline-dark" type="submit" value="Search"/>
+    <form  th:action="@{/search-by-text}"  method="get">
+        <input type="text" name="text" required autocomplete="off" placeholder="Belgian"/>
+        <input class="btn btn-outline-dark" type="submit" value="Search" />
     </form>
 
     <form  th:action="@{/refresh-data}"  method="post">
-        <input class="btn btn-outline-dark" type="submit" value="Refresh Data"/>
+        <p>Company names separated by , :<input type="text" name="companyNames" placeholder="facebook,google"/>(optional)</p>
+        <p>Number of companies: <input type="text" name="numberCompanies" placeholder="2" />(optional)</p>
+        <p>Number of products: <input type="text" name="numberProducts" placeholder="2"/>(optional)</p>
+        <p>Number of invoices: <input type="text" name="numberInvoices" placeholder="2"/>(optional)</p>
+        <input class="btn btn-outline-dark" type="submit" value="Submit"/>
     </form>
 
     <table class="table">

@@ -4,9 +4,6 @@ import java.util.Random;
 
 public class GenerateName {
 
-    //    private final static String[] LIST_OF_FIRST_NAMES = {"1", "2", "3"};
-    //    private final static String[] LIST_OF_MIDDLE_NAMES = {"a", "b", "c"};
-    //    private final static String[] LIST_OF_LAST_NAMES = {"@", "#"};
     private final static String[] LIST_OF_FIRST_NAMES = {"Romanian", "Belgian", "German"};
     private final static String[] LIST_OF_MIDDLE_NAMES = {"Food", "Electricity", "Delivery"};
     private final static String[] LIST_OF_LAST_NAMES = {"Incorporated", "Limited"};

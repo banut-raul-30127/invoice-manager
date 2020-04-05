@@ -25,4 +25,5 @@ public class InvoiceServiceImpl implements InvoiceService {
     public List<Invoice> findAll() {
         return invoiceRepository.findAll();
     }
+
 }

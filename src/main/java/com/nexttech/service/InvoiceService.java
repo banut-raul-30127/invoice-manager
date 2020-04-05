@@ -1,6 +1,7 @@
 package com.nexttech.service;
 
 
+import com.nexttech.model.Company;
 import com.nexttech.model.Invoice;
 
 import java.util.List;

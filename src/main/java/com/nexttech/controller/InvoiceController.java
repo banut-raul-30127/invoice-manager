@@ -1,5 +1,7 @@
 package com.nexttech.controller;
 
+import com.nexttech.DTO.InvoiceGenerateDTO;
+import com.nexttech.model.Invoice;
 import com.nexttech.service.GenerateService;
 import com.nexttech.service.InvoiceService;
 import org.apache.commons.lang3.StringUtils;
@@ -38,10 +40,10 @@ public class InvoiceController {
     }
 
     @RequestMapping(value = "/refresh-data", method = RequestMethod.POST)
-    public String refresh(Model model) {
-        generateService.refreshData();
+    public String refresh(Model model, InvoiceGenerateDTO invoiceGenerateDTO) {
+        generateService.refreshData(invoiceGenerateDTO);
 
-        model.addAttribute("invoices",invoiceService.findAll());
+        model.addAttribute("invoices", invoiceService.findAll());
         return "index";
     }
 }

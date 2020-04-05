@@ -24,6 +24,9 @@ public class Invoice {
     private boolean duplicate;
 
 
+    public Invoice() {
+    }
+
     public Invoice(int invoiceNumber, Company seller, List<Product> products, boolean checkPayDate) {
         this.invoiceNumber = invoiceNumber;
         this.products = products;

@@ -7,12 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.TextCriteria;
-import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -33,28 +28,23 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
 
 
     @Override
+    public void save(Invoice invoice) {
+        mongoTemplate.insert(Invoice.class);
+    }
+
+    @Override
+    public int size() {
+        return mongoTemplate.findAll(Invoice.class).size();
+    }
+
+
+    @Override
     public List<Invoice> findAll() {
         Query query = new Query();
         query.with(Sort.by(Sort.Direction.ASC, "payDate", "dueDate"));
         return mongoTemplate.find(query, Invoice.class);
-//
-//        return mongoTemplate.findAll(Invoice.class);
     }
 
-//    @Override
-//    public List<Invoice> findByText(String text) {
-//        if (text.startsWith("G") || text.startsWith("g")) {
-//
-//            TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(text);
-//            TextQuery textQuery = TextQuery.queryText(criteria);
-//            textQuery.limit(10);
-//            return mongoTemplate.find(textQuery, Invoice.class);
-//        }
-//        TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(text);
-//        TextQuery textQuery = TextQuery.queryText(criteria);
-//        textQuery.limit(10);
-//        return mongoTemplate.find(textQuery, Invoice.class);
-//    }
 
     @Override
     public List<Invoice> findByText(String text) {
@@ -72,6 +62,6 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
     @Override
     public void removeAll() {
 
-        mongoTemplate.remove(new Query(),Invoice.class);
+        mongoTemplate.remove(new Query(), Invoice.class);
     }
 }
