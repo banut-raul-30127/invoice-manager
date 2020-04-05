@@ -9,13 +9,12 @@ public interface InvoiceRepository {
 
     void save(List<Invoice> invoices);
 
-    void save(Invoice invoice);
-
-    int size();
+    void pay(Integer invoiceNumber);
 
     List<Invoice> findAll();
 
     List<Invoice> findByText(String text);
 
     void removeAll();
+
 }

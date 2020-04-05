@@ -74,7 +74,7 @@ public class GenerateService {
         }
 
         Invoice invoice = invoices.get(invoices.size() - 1);
-        Invoice duplicateInvoice = new Invoice(5542, invoice.getSeller(), invoice.getProducts(), invoice.isCheckPayDate());
+        Invoice duplicateInvoice = new Invoice(5542, invoice.getSeller(), invoice.getProducts(), invoice.isPaid());
         duplicateInvoice.setDueDate(invoice.getDueDate());
         duplicateInvoice.setPayDate(invoice.getPayDate());
         duplicateInvoice.setDuplicate(true);
@@ -87,6 +87,11 @@ public class GenerateService {
 
         Set<String> companyNames = validate(invoiceGenerateDTO.getCompanyNames());
 
+        Integer numberOfCompanies = invoiceGenerateDTO.getNumberCompanies();
+        if (numberOfCompanies == null || numberOfCompanies == 0) {
+            numberOfCompanies = 24;
+        }
+
         if (CollectionUtils.isEmpty(companyNames)) {
             int i = 0;
             while (i < 3) {
@@ -95,10 +100,6 @@ public class GenerateService {
                     companyNames.add(test);
                     i++;
                 }
-            }
-            Integer numberOfCompanies = invoiceGenerateDTO.getNumberCompanies();
-            if (numberOfCompanies == null || numberOfCompanies == 0) {
-                numberOfCompanies = 24;
             }
             while (i < numberOfCompanies) {
                 int numberOfNames = random.nextInt(2);
@@ -118,10 +119,13 @@ public class GenerateService {
 
         List<Company> companies = new ArrayList<>();
 
+
         for (String companyName : companyNames) {
             Company company = new Company(companyName, generatePhoneNumber.getRandomPhoneNumber());
             companies.add(company);
         }
+
+        companies = companies.subList(0, numberOfCompanies);
 
         return companies;
     }
@@ -166,5 +170,6 @@ public class GenerateService {
         }
         return finalList;
     }
+
 }
 

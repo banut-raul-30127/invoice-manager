@@ -10,8 +10,8 @@
 
     <title>Nexttech Application</title>
 
-        <link rel="stylesheet" th:href="@{webjars/bootstrap/4.4.1/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.4.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
 </head>
 
@@ -24,14 +24,15 @@
         <h1>Nexttech Application</h1>
     </div>
 
-    <form  th:action="@{/search-by-text}"  method="get">
+    <form th:action="@{/search-by-text}" method="get">
         <input type="text" name="text" required autocomplete="off" placeholder="Belgian"/>
-        <input class="btn btn-outline-dark" type="submit" value="Search" />
+        <input class="btn btn-outline-dark" type="submit" value="Search"/>
     </form>
 
-    <form  th:action="@{/refresh-data}"  method="post">
-        <p>Company names separated by , :<input type="text" name="companyNames" placeholder="facebook,google"/>(optional)</p>
-        <p>Number of companies: <input type="text" name="numberCompanies" placeholder="2" />(optional)</p>
+    <form th:action="@{/refresh-data}" method="post">
+        <p>Company names separated by , :<input type="text" name="companyNames" placeholder="facebook,google"/>(optional)
+        </p>
+        <p>Number of companies: <input type="text" name="numberCompanies" placeholder="2"/>(optional)</p>
         <p>Number of products: <input type="text" name="numberProducts" placeholder="2"/>(optional)</p>
         <p>Number of invoices: <input type="text" name="numberInvoices" placeholder="2"/>(optional)</p>
         <input class="btn btn-outline-dark" type="submit" value="Submit"/>
@@ -42,11 +43,12 @@
         <tr>
             <th scope="col">Invoice Number</th>
             <th scope="col">Seller Name</th>
-            <th scope="col">Products </th>
+            <th scope="col">Products</th>
             <th scope="col">Due Date</th>
             <th scope="col">Pay Date</th>
             <th scope="col">Total</th>
             <th scope="col">Duplicate</th>
+            <th scope="col">Pay</th>
         </tr>
         </thead>
         <tbody>
@@ -54,11 +56,19 @@
             th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
             <td th:text="${invoice.getInvoiceNumber()}">1</td>
             <td th:text="${invoice.getSeller().getName()}">Jack</td>
-            <td class="list-group" th:each="product, rowStat:${invoice.getProducts()}" th:text="${product.getName()}">List</td>
+            <td class="list-group" th:each="product, rowStat:${invoice.getProducts()}" th:text="${product.getName()}">
+                List
+            </td>
             <td th:text="${invoice.getDueDate()}">23</td>
             <td th:text="${invoice.getPayDate()}">AVE N</td>
             <td th:text="${invoice.getTotal()}">77587</td>
             <td th:text="${invoice.isDuplicate()}">77587</td>
+            <td th:unless="${invoice.isPaid()}">
+                <form method="POST" th:action="@{/pay(invoiceNumber=${invoice.getInvoiceNumber()})}">
+                    <button type="submit" name="submit" value="value" class="btn btn-outline-success">Pay
+                    </button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

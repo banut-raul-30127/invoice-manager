@@ -1,7 +1,9 @@
 package com.nexttech.model;
 
 //import org.decimal4j.util.DoubleRounder;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -20,9 +22,7 @@ public class Invoice {
     private double total;
     private LocalDate dueDate;
     private LocalDate payDate;
-    private boolean checkPayDate;
     private boolean duplicate;
-
 
     public Invoice() {
     }
@@ -37,12 +37,11 @@ public class Invoice {
             total += product.getPrice();
         }
 
-        this.total = Math.round(total*100.0)/100.0;
+        this.total = Math.round(total * 100.0) / 100.0;
 
         Random random = new Random();
 
         dueDate = LocalDate.now().plusDays(random.nextInt(5));
-        this.checkPayDate = checkPayDate;
         if (checkPayDate) {
             payDate = LocalDate.now().minusDays(random.nextInt(5));
         }
@@ -97,19 +96,9 @@ public class Invoice {
         return payDate;
     }
 
-    public void printProducts() {
-        for (Product product : products) {
-            System.out.print(product.getName() + " ");
-        }
-    }
 
-
-    public boolean isCheckPayDate() {
-        return checkPayDate;
-    }
-
-    public void setCheckPayDate(boolean checkPayDate) {
-        this.checkPayDate = checkPayDate;
+    public boolean isPaid() {
+        return payDate != null;
     }
 
     public void setDueDate(LocalDate dueDate) {
@@ -122,7 +111,7 @@ public class Invoice {
         if (obj == null) return false;
         if (this.getClass() != obj.getClass()) return false;
         Invoice that = (Invoice) obj;
-        if (this.checkPayDate != that.checkPayDate) return false;
+        if (this.isPaid() != that.isPaid()) return false;
         return true;
     }
 

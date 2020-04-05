@@ -26,4 +26,10 @@ public class InvoiceServiceImpl implements InvoiceService {
         return invoiceRepository.findAll();
     }
 
+    @Override
+    public void pay(Integer invoiceNumber) {
+        invoiceRepository.pay(invoiceNumber);
+    }
+
+
 }

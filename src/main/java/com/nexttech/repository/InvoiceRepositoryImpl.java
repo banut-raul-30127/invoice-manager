@@ -7,8 +7,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -26,17 +28,14 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
         mongoTemplate.insertAll(invoices);
     }
 
-
     @Override
-    public void save(Invoice invoice) {
-        mongoTemplate.insert(Invoice.class);
-    }
+    public void pay(Integer invoiceNumber) {
+        Criteria criteria = Criteria.where("invoiceNumber").is(invoiceNumber);
+        Update update = new Update();
 
-    @Override
-    public int size() {
-        return mongoTemplate.findAll(Invoice.class).size();
+        update.set("payDate", LocalDate.now());
+        mongoTemplate.updateFirst(Query.query(criteria), update, Invoice.class);
     }
-
 
     @Override
     public List<Invoice> findAll() {
@@ -45,11 +44,9 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
         return mongoTemplate.find(query, Invoice.class);
     }
 
-
     @Override
     public List<Invoice> findByText(String text) {
         Pattern pattern = Pattern.compile(text, Pattern.CASE_INSENSITIVE);
-
 
         Criteria criteria = Criteria.where("seller.name").regex(pattern);
 

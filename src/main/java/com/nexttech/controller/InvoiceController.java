@@ -46,4 +46,12 @@ public class InvoiceController {
         model.addAttribute("invoices", invoiceService.findAll());
         return "index";
     }
+
+    @RequestMapping(value = "/pay", method = RequestMethod.POST)
+    public String refresh(Model model, @RequestParam(value = "invoiceNumber") Integer invoiceNumber) {
+        invoiceService.pay(invoiceNumber);
+
+        model.addAttribute("invoices", invoiceService.findAll());
+        return "index";
+    }
 }
