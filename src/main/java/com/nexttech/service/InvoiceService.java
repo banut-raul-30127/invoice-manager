@@ -1,7 +1,6 @@
 package com.nexttech.service;
 
 import com.nexttech.model.Invoice;
-
 import java.util.List;
 
 public interface InvoiceService {
@@ -11,5 +10,4 @@ public interface InvoiceService {
     List<Invoice> findAll();
 
     void pay(Integer invoiceNumber);
-
 }

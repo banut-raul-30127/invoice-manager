@@ -116,14 +116,13 @@ public class GenerateService {
             }
         }
 
-
         List<Company> companies = new ArrayList<>();
-
 
         for (String companyName : companyNames) {
             Company company = new Company(companyName, generatePhoneNumber.getRandomPhoneNumber());
             companies.add(company);
         }
+
 
         companies = companies.subList(0, numberOfCompanies);
 
@@ -170,6 +169,5 @@ public class GenerateService {
         }
         return finalList;
     }
-
 }
 

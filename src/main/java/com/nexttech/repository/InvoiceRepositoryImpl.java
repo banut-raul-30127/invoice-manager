@@ -58,7 +58,6 @@ public class InvoiceRepositoryImpl implements InvoiceRepository {
 
     @Override
     public void removeAll() {
-
         mongoTemplate.remove(new Query(), Invoice.class);
     }
 }

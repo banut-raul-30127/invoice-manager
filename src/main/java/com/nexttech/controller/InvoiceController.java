@@ -28,7 +28,6 @@ public class InvoiceController {
         return "index";
     }
 
-
     @RequestMapping(value = "/search-by-text", method = RequestMethod.GET)
     public String findByText(Model model, @RequestParam(value = "text") String text) {
         if (StringUtils.isBlank(text)) {
@@ -54,4 +53,5 @@ public class InvoiceController {
         model.addAttribute("invoices", invoiceService.findAll());
         return "index";
     }
+
 }

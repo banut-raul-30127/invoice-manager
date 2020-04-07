@@ -1,6 +1,5 @@
 package com.nexttech.service;
 
-
 import com.nexttech.model.Invoice;
 import com.nexttech.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,8 @@ import java.util.List;
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
-
     @Autowired
     private InvoiceRepository invoiceRepository;
-
 
     @Override
     public List<Invoice> find(String text) {
@@ -30,6 +27,5 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void pay(Integer invoiceNumber) {
         invoiceRepository.pay(invoiceNumber);
     }
-
 
 }
