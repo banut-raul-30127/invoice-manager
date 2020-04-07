@@ -27,5 +27,4 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void pay(Integer invoiceNumber) {
         invoiceRepository.pay(invoiceNumber);
     }
-
 }

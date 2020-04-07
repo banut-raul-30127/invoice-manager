@@ -1,15 +1,11 @@
 package com.nexttech.model;
 
-//import org.decimal4j.util.DoubleRounder;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 import java.time.LocalDate;
 import java.util.*;
-
 
 @Document(collection = "invoice")
 public class Invoice {
@@ -87,7 +83,6 @@ public class Invoice {
         return total;
     }
 
-
     public LocalDate getDueDate() {
         return dueDate;
     }
@@ -95,7 +90,6 @@ public class Invoice {
     public LocalDate getPayDate() {
         return payDate;
     }
-
 
     public boolean isPaid() {
         return payDate != null;
@@ -114,7 +108,6 @@ public class Invoice {
         if (this.isPaid() != that.isPaid()) return false;
         return true;
     }
-
 
     @Override
     public int hashCode() {
