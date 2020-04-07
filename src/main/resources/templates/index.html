@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@800&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -13,31 +15,100 @@
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.4.1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
+    <style>
+        /* Style the body */
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+        }
+
+        .move-header {
+            margin-top: 40px;
+        }
+
+        .edit-col-sm {
+            margin-left: 70px;
+            padding-right: 0;
+        }
+
+        /* Header/Logo Title */
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            color: black;
+            font-size: 30px;
+            font-family: 'Catamaran', sans-serif;
+        }
+
+    </style>
 </head>
 
 <body>
 
 
 <main role="main" class="container">
+    <div class="move-header header">
 
-    <div class="starter-template">
+    </div>
+    <div class="header">
         <h1>Nexttech Application</h1>
     </div>
 
-    <form th:action="@{/search-by-text}" method="get">
-        <input type="text" name="text" required autocomplete="off" placeholder="Belgian"/>
-        <input class="btn btn-outline-dark" type="submit" value="Search"/>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+            </div>
+            <div class="edit-col-sm col-sm">
+                <form th:action="@{/search-by-text}" method="get">
+                    <div class="form-group">
+                        <label></label>
+                        <input type="text" name="text" required autocomplete="off" placeholder="Belgian"/>
+                        <input class="btn btn-outline-dark" type="submit" value="Search"/>
+                    </div>
+                </form>
 
+            </div>
+        </div>
+    </div>
     <form th:action="@{/refresh-data}" method="post">
-        <p>Company names separated by , :<input type="text" name="companyNames" placeholder="facebook,google"/>(optional)
-        </p>
-        <p>Number of companies: <input type="text" name="numberCompanies" placeholder="2"/>(optional)</p>
-        <p>Number of products: <input type="text" name="numberProducts" placeholder="2"/>(optional)</p>
-        <p>Number of invoices: <input type="text" name="numberInvoices" placeholder="2"/>(optional)</p>
-        <input class="btn btn-outline-dark" type="submit" value="Submit"/>
+        <div class="form-group">
+            <label class="control-label col-sm-14">Company names separated by ,(commas) : </label>
+            <div class="col-sm-14">
+                <input type="text" class="form-control" name="companyNames"
+                       placeholder="Instagram, Nexttech, Facebook"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-14">Number of companies: </label>
+            <div class="col-sm-14">
+                <input type="text" class="form-control" name="numberCompanies"
+                       placeholder="Should be a positive number between 1 and the number of company names "/>
+            </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-14">Number of products:</label>
+            <div class="col-sm-14">
+                <input type="text" class="form-control" name="numberProducts"
+                       placeholder="Should be a positive number greater than 0"/>
+            </div>
+        </div>
+        <label class="control-label col-sm-14">Number of invoices:</label>
+        <div class="col-sm-14">
+            <input type="text" class="form-control" name="numberInvoices"
+                   placeholder="Should be a positive number greater than 0"/>
+        </div>
+        </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-14">
+                <p>
+                </p>
+                <input class="btn btn-outline-dark" type="submit" value="Submit"/>
+            </div>
+        </div>
     </form>
-
     <table class="table">
         <thead>
         <tr>
@@ -74,8 +145,8 @@
     </table>
 
 </main>
-<!-- /.container -->
 
 <script type="text/javascript" th:src="@{webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+
 </body>
 </html>

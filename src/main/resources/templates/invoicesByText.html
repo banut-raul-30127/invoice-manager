@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@800&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -13,50 +15,60 @@
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.4.1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
+    <style>
+        /* Style the body */
+        body {
+            font-family: 'Roboto Slab', serif;
+            margin: 0;
+        }
+
+        .move-header {
+            margin-top: 40px;
+        }
+
+        /* Header/Logo Title */
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            color: black;
+            font-size: 30px;
+            font-family: 'Catamaran', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
 
-
-<main role="main" class="container">
-
-    <div class="starter-template">
-        <h1 >Nexttech Application</h1>
-    </div>
-
-    <form th:action="@{/search-by-text}"  method="get">
-        <input type="text" name="text"  required/>
-        <input class="btn btn-dark" type="submit" value="Back" />
-    </form>
-
-
-    <table class="table">
-        <thead>
-        <tr>
-<!--            <th scope="col">Invoice Number</th>-->
-            <th scope="col">Seller Name</th>
-            <th scope="col">Due Date</th>
-            <th scope="col">Pay Date</th>
-<!--            <th scope="col">Total</th>-->
-<!--            <th scope="col">Duplicate</th>-->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="invoice, rowStat: ${invoices}"
-            th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
-<!--            <td th:text="${invoice.getInvoiceNumber()}">1</td>-->
-            <td th:text="${invoice.getSeller().getName()}">Jack</td>
-            <td th:text="${invoice.getDueDate()}">23</td>
-            <td th:text="${invoice.getPayDate()}">AVE N</td>
-<!--            <td th:text="${invoice.getTotal()}">77587</td>-->
-<!--            <td th:text="${invoice.isDuplicate()}">77587</td>-->
-        </tr>
-        </tbody>
-    </table>
-
-</main>
-<!-- /.container -->
-
-<script type="text/javascript" th:src="@{webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+    <main role="main" class="container">
+        <div class="move-header header">
+        </div>
+        <div class="header">
+            <h1>Nexttech Application</h1>
+        </div>
+        <form th:action="@{/}" method="get">
+            <input class="btn btn-dark" type="submit" value="Back"/>
+        </form>
+        <div class="header">
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Seller Name</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Pay Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="invoice, rowStat: ${invoices}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${invoice.getSeller().getName()}">Jack</td>
+                <td th:text="${invoice.getDueDate()}">23</td>
+                <td th:text="${invoice.getPayDate()}">AVE N</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <script type="text/javascript" th:src="@{webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </body>
 </html>
