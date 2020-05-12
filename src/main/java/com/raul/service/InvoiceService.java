@@ -1,8 +1,12 @@
-package com.nexttech.service;
+package com.raul.service;
 
-import com.nexttech.model.Invoice;
+import com.raul.model.Invoice;
+import com.raul.repository.InvoiceRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public interface InvoiceService {
 
     List<Invoice> find(String text);

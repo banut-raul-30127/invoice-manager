@@ -1,13 +1,18 @@
-package com.nexttech.model;
+package com.raul.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.*;
 
 @Document(collection = "invoice")
+@NoArgsConstructor
+@Getter
+@Setter
 public class Invoice {
 
     @Id
@@ -19,9 +24,6 @@ public class Invoice {
     private LocalDate dueDate;
     private LocalDate payDate;
     private boolean duplicate;
-
-    public Invoice() {
-    }
 
     public Invoice(int invoiceNumber, Company seller, List<Product> products, boolean checkPayDate) {
         this.invoiceNumber = invoiceNumber;
@@ -43,60 +45,8 @@ public class Invoice {
         }
     }
 
-    public void setPayDate(LocalDate payDate) {
-        this.payDate = payDate;
-    }
-
-    public boolean isDuplicate() {
-        return duplicate;
-    }
-
-    public void setDuplicate(boolean duplicate) {
-        this.duplicate = duplicate;
-    }
-
-    public Company getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Company seller) {
-        this.seller = seller;
-    }
-
-    public int getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public void setInvoiceNumber(int invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public LocalDate getPayDate() {
-        return payDate;
-    }
-
     public boolean isPaid() {
         return payDate != null;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
     }
 
     @Override

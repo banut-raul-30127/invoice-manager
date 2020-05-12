@@ -1,4 +1,4 @@
-package com.nexttech.DTO;
+package com.raul.DTO;
 
 public class InvoiceGenerateDTO {
 

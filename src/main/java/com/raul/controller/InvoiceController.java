@@ -1,11 +1,11 @@
-package com.nexttech.controller;
+package com.raul.controller;
 
-import com.nexttech.DTO.InvoiceGenerateDTO;
-import com.nexttech.model.Invoice;
-import com.nexttech.service.GenerateService;
-import com.nexttech.service.InvoiceService;
+import com.raul.DTO.InvoiceGenerateDTO;
+import com.raul.service.GenerateService;
+import com.raul.service.InvoiceService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@Slf4j
+@AllArgsConstructor
 public class InvoiceController {
 
-    @Autowired
     private InvoiceService invoiceService;
-
-    @Autowired
     private GenerateService generateService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showAll(Model model) {
         model.addAttribute("invoices", invoiceService.findAll());
+        log.info("search");
         return "index";
     }
 

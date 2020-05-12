@@ -1,6 +1,6 @@
-package com.nexttech.repository;
+package com.raul.repository;
 
-import com.nexttech.model.Invoice;
+import com.raul.model.Invoice;
 
 import java.util.List;
 

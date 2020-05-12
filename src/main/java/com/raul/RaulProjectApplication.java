@@ -1,12 +1,12 @@
-package com.nexttech;
+package com.raul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NexttechProjectApplication {
+public class RaulProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NexttechProjectApplication.class, args);
+		SpringApplication.run(RaulProjectApplication.class, args);
 	}
 }

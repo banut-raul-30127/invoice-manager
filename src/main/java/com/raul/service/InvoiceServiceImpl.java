@@ -1,16 +1,16 @@
-package com.nexttech.service;
+package com.raul.service;
 
-import com.nexttech.model.Invoice;
-import com.nexttech.repository.InvoiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.raul.model.Invoice;
+import com.raul.repository.InvoiceRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService {
 
-    @Autowired
     private InvoiceRepository invoiceRepository;
 
     @Override

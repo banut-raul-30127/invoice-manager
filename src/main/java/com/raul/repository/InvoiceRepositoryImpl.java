@@ -1,8 +1,7 @@
-package com.nexttech.repository;
+package com.raul.repository;
 
 
-import com.nexttech.model.Company;
-import com.nexttech.model.Invoice;
+import com.raul.model.Invoice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

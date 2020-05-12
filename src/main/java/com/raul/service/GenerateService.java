@@ -1,10 +1,11 @@
-package com.nexttech.service;
+package com.raul.service;
 
-import com.nexttech.DTO.InvoiceGenerateDTO;
-import com.nexttech.model.Company;
-import com.nexttech.model.Invoice;
-import com.nexttech.model.Product;
-import com.nexttech.repository.InvoiceRepository;
+import com.raul.DTO.InvoiceGenerateDTO;
+import com.raul.model.Company;
+import com.raul.model.Invoice;
+import com.raul.model.Product;
+import com.raul.repository.InvoiceRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Component
+@Slf4j
 public class GenerateService {
 
     private GenerateName generateName = new GenerateName();
@@ -91,7 +93,7 @@ public class GenerateService {
         if (numberOfCompanies == null || numberOfCompanies == 0) {
             numberOfCompanies = 24;
         }
-
+        
         if (CollectionUtils.isEmpty(companyNames)) {
             int i = 0;
             while (i < 3) {
@@ -119,7 +121,7 @@ public class GenerateService {
         List<Company> companies = new ArrayList<>();
 
         for (String companyName : companyNames) {
-            Company company = new Company(companyName, generatePhoneNumber.getRandomPhoneNumber());
+            Company company = Company.builder().name(companyName).phoneNumber(generatePhoneNumber.getRandomPhoneNumber()).build();
             companies.add(company);
         }
 
@@ -146,7 +148,7 @@ public class GenerateService {
         }
 
         for (i = 0; i < names.size(); i++) {
-            Product product = new Product(i, names.get(i), (double) (random.nextInt(999) + 1) / 10);
+            Product product = Product.builder().name(names.get(i)).price((double) (random.nextInt(999) + 1) / 10).productNumber(i).build();
             products.add(product);
         }
         return products;
